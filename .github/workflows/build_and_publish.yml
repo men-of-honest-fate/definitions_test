@@ -9,7 +9,7 @@ on:
 jobs:
   migrate:
     name: Pull new version and make migration
-    runs-on: [self-hosted, Linux]
+    runs-on: ubuntu-latest
     environment:
       name: Pre-release
     steps:
@@ -21,7 +21,7 @@ jobs:
   build-and-publish:
     name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
     needs: migrate
-    runs-on: [self-hosted, Linux]
+    runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
     environment:
       name: Release
