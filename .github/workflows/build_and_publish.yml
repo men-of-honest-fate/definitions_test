@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m ensurepip 
-          pip install alembic sqlalchemy
+          pip install alembic sqlalchemy psycopg2
 
       - name: Migrate DB
         run: |
