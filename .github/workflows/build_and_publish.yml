@@ -7,7 +7,7 @@ on:
       - 'v*'
 
 jobs:
-  Мigrate:
+  migrate:
     name: Pull new version and make migration
     runs-on: [self-hosted, Linux]
     environment:
