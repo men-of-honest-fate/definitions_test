@@ -15,8 +15,9 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          python -m ensurepip 
-          pip install alembic sqlalchemy
+          apt install python3
+          python3 -m ensurepip 
+          python3 -m pip install alembic sqlalchemy
 
       - name: Migrate DB
         run: |
