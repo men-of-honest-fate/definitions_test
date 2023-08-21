@@ -55,6 +55,9 @@ jobs:
     needs: build-and-push-image
     environment:
       name: Pre-release
+    env:
+      CONTAINER_NAME: com_profcomff_dwh_definitions_test
+      DB_DSN: "postgresql://postgres:12345@192.168.1.6:5432/definitions"
     steps:
       - name: Log in to the Container registry
         uses: docker/login-action@v2
