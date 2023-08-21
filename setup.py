@@ -22,3 +22,4 @@ setup(
     zip_safe=False,
     classifiers=["Programming Language :: Python :: 3.11", "License :: OSI Approved :: BSD License"],
 )
+# cringe
