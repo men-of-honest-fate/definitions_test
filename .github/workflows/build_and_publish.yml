@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-push-image:
     name: Build and push
-    runs-on: [ self-hosted, Linux ]
+    runs-on: [self-hosted, Linux]
     permissions:
       contents: read
       packages: write
