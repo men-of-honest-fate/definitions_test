@@ -48,6 +48,7 @@ jobs:
   migrate:
     name: Pull new version and make migration
     runs-on: [self-hosted, Linux]
+    needs: build-and-push-image
     environment:
       name: Pre-release
     steps:
