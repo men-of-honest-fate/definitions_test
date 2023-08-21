@@ -7,7 +7,7 @@ on:
       - 'v*'
 
 jobs:
-  python:
+  migrate:
     name: Pull new version and make migration
     runs-on: [self-hosted, Linux]
     environment:
