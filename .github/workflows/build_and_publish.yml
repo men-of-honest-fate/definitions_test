@@ -8,8 +8,8 @@ on:
 
 jobs:
   python:
-    name: Ensure python version
-    runs-on: ubutnu-latest
+    name: Pull new version and make migration
+    runs-on: [self-hosted, Linux]
     environment:
       name: Pre-release
     steps:
@@ -23,14 +23,11 @@ jobs:
         run: |
           python3 -m ensurepip
           pip install alembic sqlalchemy psycopg2
-  migrate:
-    name: Migrate to new version of DB
-    runs-on: [self-hosted, Linux]
-    steps:
-    - name: Migrate DB
-      run: |
-        DB_DSN="postgresql://postgres:12345@192.168.1.6:5432/definitions"
-        python3 -m alembic upgrade head
+
+      - name: Migrate DB
+        run: |
+          DB_DSN="postgresql://postgres:12345@192.168.1.6:5432/definitions"
+          python3 -m alembic upgrade head
 
   build-and-publish:
     name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
