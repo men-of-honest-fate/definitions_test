@@ -1,3 +1,4 @@
 setuptools
 alembic
 psycopg2
+wheel
