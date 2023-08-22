@@ -20,7 +20,7 @@ jobs:
     environment:
       name: Pre-release
     env:
-      DB_DSN: "postgresql://profcom:12345/mohf.ru:5432/definitions"
+      DB_DSN: "postgresql://mohf.ru:5432/profcom:12345/definitions"
 
     steps:
       - uses: actions/checkout@v3
