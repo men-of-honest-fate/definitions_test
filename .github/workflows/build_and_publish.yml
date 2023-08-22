@@ -13,14 +13,28 @@ env:
 jobs:
   migrate:
     name: Build and push
-    runs-on: [self-hosted, Linux]
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    env:
-      DB_DSN: "postgresql://postgres:12345@192.168.1.6:5432/definitions"
 
     steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m ensurepip 
+          pip install -r requirements.txt -r requirements.dev.txt
+          pip install build --user 
+          python -m build --wheel --sdist --outdir dist/
+      - name: Migrate DB
+        run: |
+          DB_DSN="postgresql://postgres:12345@192.168.1.6:5432/definitions"
+          alembic upgrade head
 #      - name: Checkout repository
 #        uses: actions/checkout@v3
 #
@@ -50,9 +64,6 @@ jobs:
 #          labels: ${{ steps.meta.outputs.labels }}
 #          build-args: |
 #            APP_VERSION=${{ github.ref_name }}
-      - name: migrate
-        run: mkdir /app && 
-             docker run python /bin/bash -c 'python -m ensurepip && cd /app && pip install -r requirements.txt -r requirements.dev.txt && alembic upgrade head'
 #  migrate:
 #    name: Pull new version and make migration
 #    runs-on: [self-hosted, Linux]
