@@ -33,7 +33,7 @@ jobs:
           python -m build --wheel --sdist --outdir dist/
       - name: Migrate DB
         run: |
-          DB_DSN="postgresql://postgres:12345@192.168.1.6:5432/definitions"
+          DB_DSN=${{ secrets.DB_DSN }}
           alembic upgrade head
 #      - name: Checkout repository
 #        uses: actions/checkout@v3
