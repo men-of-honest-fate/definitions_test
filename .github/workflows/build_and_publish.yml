@@ -47,7 +47,7 @@ jobs:
     environment:
       name: Release
     env:
-      TWINE_USERNAME: "token"
+      TWINE_USERNAME: "__token__"
       TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
     steps:
       - uses: actions/checkout@v3
