@@ -51,7 +51,7 @@ jobs:
 #          build-args: |
 #            APP_VERSION=${{ github.ref_name }}
       - name: migrate
-        run: docker run -v ${pwd}:/app \
+        run: docker run -v ${pwd}/app \
              -e DB_DSN=postgresql://localhost:5432/dwh \
              --rm python \
              /bin/bash -c 'python -m ensurepip && cd /app && pip install -r requirements.txt -r requirements.dev.txt && alembic upgrade head'
