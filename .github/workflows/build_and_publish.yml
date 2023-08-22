@@ -46,6 +46,9 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
     environment:
       name: Release
+    env:
+      TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+      TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.11
