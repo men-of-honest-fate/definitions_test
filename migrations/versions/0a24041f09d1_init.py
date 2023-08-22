@@ -17,7 +17,6 @@ depends_on = None
 
 
 def upgrade():
-    op.execute("CREATE SCHEMA STG_UNION_MEMBER")
     op.create_table(
         'union_member',
         sa.Column('id', sa.Integer(), nullable=False),
