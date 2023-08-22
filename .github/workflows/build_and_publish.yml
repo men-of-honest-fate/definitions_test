@@ -17,6 +17,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    environment:
+      name: Pre-release
 
     steps:
       - uses: actions/checkout@v3
@@ -33,7 +35,7 @@ jobs:
           python -m build --wheel --sdist --outdir dist/
       - name: Migrate DB
         run: |
-          DB_DSN=${{ secrets.DB_DSN }}
+          DB_DSN="postgresql://profcom:12345/mohf.ru:5432/definitions"
           alembic upgrade head
 #      - name: Checkout repository
 #        uses: actions/checkout@v3
